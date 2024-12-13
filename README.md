@@ -17,6 +17,17 @@ AUTH_ALGORITHM = "RS256"
 AUTH_JWKS_ENDPOINT = ""    # Put your JWKS endpoint from the next step in here
 ```
 
+### Step 3: Add a `todos` table
+
+Run the following SQL query against your StarbaseDB internal source. If you need help understanding how to run queries against your instance please reference the README here: https://github.com/outerbase/starbasedb
+```
+CREATE TABLE "todos"(
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "user_id" TEXT,
+  "text" TEXT
+, "completed" INTEGER NOT NULL DEFAULT '0')
+```
+
 ### Step 3: Create a Clerk account
 
 Create an account on clerk.com that will serve as your user authentication method. You will need a `PUBLISHABLE_KEY` and `SECRET_KEY` that we will put in a local environment file shortly. When you create your JWT template be sure to select RS256 as your algorithm.
